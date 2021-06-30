@@ -1,0 +1,137 @@
+2 way binding
+
+
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<div class="slds-page-header">
+        <div class="slds-text-heading_large">
+            <div class="slds-align--absolute-center">
+    <p>Registration form</p>
+    </div>
+    </div>
+        </div>
+    
+    
+    <aura:attribute name="ChildCall" type="List" />
+    <aura:attribute name="test" type="string" default="Hi"/> 
+    {!v.test}
+    
+    <div class="slds-size--3-of-8">
+    <lightning:input label="First Name" required="true"/>
+   <lightning:input label= "Last Name"/> 
+    <lightning:input type="tel" label="Phone"/>
+    <lightning:input label="Email" type="Email"/>
+    <lightning:select label="Age">
+        <option value="one">less than 18</option>
+         <option value="two"> 18</option>
+         <option value="three">Greater than 18</option>
+    </lightning:select>
+    <lightning:input label="Date" type="date"/>
+        <!--call child comp-->
+        <aura:iteration items="{!v.ChildCall}" var="item"> 
+        <c:child testchild="{!v.test}"/>
+            </aura:iteration>
+        </div>
+    <br/>
+    <div class="slds-align--absolute-center">
+    <lightning:button label="SUBMIT"/>
+        <lightning:button label="Add Education Details" onclick="{!c.addChild}"/>   
+        
+    </div>                       
+</aura:component>
+
+*********************************************
+
+<aura:component >
+	<p>educational Details</p>
+    
+    <aura:attribute name="testchild" type="string"/>
+    
+    <lightning:input label="Institute Name" type="text"  value="{!v.testchild}"/>
+    <lightning:input label="Course" type="text"/>
+    <lightning:button label="Delete" variant="destructive"/>
+                                                  
+</aura:component>
+************************************************************
+
+({
+	addChild: function(component, event, helper) {
+      var childCall=component.get("v.ChildCall");
+         
+        var currentSize=(childCall.length);
+        console.log(currentSize);
+        var newSize=((currentSize)+1);
+        console.log(newSize);
+        childCall.push(newSize);
+        component.set("v.ChildCall",childCall);
+        
+	}
+})
+
+**********************************************************************
+
+({
+	deleteChild : function(component, event, helper) {
+		var CallChildList=component.get("v.ChildCallList");
+        var currentIndex=component.get("v.Indexnumber");
+        console.log("ok");
+        if(currentIndex>-1)
+        CallChildList.splice(currentIndex,1);
+        
+        console.log("done");
+        
+        component.set("v.ChildCallList",CallChildList);
+	}
+})
+
+***************************************************************
+ <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<div class="slds-page-header">
+        <div class="slds-text-heading_large">
+            <div class="slds-align--absolute-center">
+    <p>Registration form</p>
+    </div>
+    </div>
+        </div>
+    
+    
+    <aura:attribute name="ChildCall" type="list" />
+    
+    
+    <div class="slds-size--3-of-8">
+    <lightning:input label="First Name" required="true"/>
+   <lightning:input label= "Last Name"/> 
+    <lightning:input type="tel" label="Phone"/>
+    <lightning:input label="Email" type="Email"/>
+    <lightning:select label="Age">
+        <option value="one">less than 18</option>
+         <option value="two"> 18</option>
+         <option value="three">Greater than 18</option>
+    </lightning:select>
+    <lightning:input label="Date" type="date"/>
+        <!--call child comp-->
+        <aura:iteration items="{!v.ChildCall}" var="item"  indexVar="indexno" > 
+        <c:child ChildCallList="{!v.ChildCall}" Indexnumber="{!indexno}"/>
+            </aura:iteration>
+        </div>
+    <br/>
+    <div class="slds-align--absolute-center">
+    <lightning:button label="SUBMIT"/>
+        <lightning:button label="Add Education Details" onclick="{!c.addChild}"/>   
+        
+    </div>                       
+</aura:component>
+
+**********************************************************************************
+
+<aura:component >
+	<p>educational Details</p>
+    
+    
+    <aura:attribute name="ChildCallList" type="List"/>
+     <aura:attribute name="Indexnumber" type="integer"/>
+    <lightning:input label="Institute Name" type="text"/>
+    <lightning:input label="Course" type="text"/>
+    <lightning:button label="Delete" variant="destructive" onclick="{!c.deleteChild}" />
+                                                   
+</aura:component>
+*************************************************************************************
