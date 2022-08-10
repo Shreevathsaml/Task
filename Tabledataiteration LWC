@@ -1,0 +1,59 @@
+HTML
+<template>
+		 <lightning-card title="HelloForEach" icon-name="custom:custom14">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+           <thead>
+    <tr class="slds-line-height_reset">
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Opportunity Name"> Name</div>
+      </th>
+      <th class="" scope="col">
+        <div class="slds-truncate" title="Account Name">Title</div>
+      </th>
+				 <th class="" scope="col">
+        <div class="slds-truncate" title="Account Name">Delete</div>
+      </th>
+							 </tr>
+						</thead>
+						<tbody>
+								
+						<template for:each={contacts} for:item="contact">
+								<tr key={contact.Id}>
+								<td><div class="slds-truncate"><a href="">{contact.Name}</a></div></td>
+										<td><div class="slds-truncate">{contact.Title}</div></td>
+										<td>
+                                <a onclick={removeRow}> 
+                                    <lightning-icon icon-name="utility:delete" size="small" style="margin-top: -4px; margin-right: 0px;" ></lightning-icon>
+                                    <span class="slds-assistive-text">Delete</span>
+                                </a>
+                            </td> 
+								</tr>
+								
+            </template>
+								
+						</tbody>
+				 </table>
+    </lightning-card>
+</template>
+------------------------------------------------------------------------------------------------------------------------------
+.JS:
+import { LightningElement } from 'lwc';
+export default class TableDataIteration extends LightningElement {
+		contacts = [
+        {
+            Id: 1,
+            Name: 'Amy Taylor',
+            Title: 'VP of Engineering',
+        },
+        {
+            Id: 2,
+            Name: 'Michael Jones',
+            Title: 'VP of Sales',
+        },
+        {
+            Id: 3,
+            Name: 'Jennifer Wu',
+            Title: 'CEO',
+        },
+    ];
+}
