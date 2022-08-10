@@ -1,0 +1,98 @@
+HTML
+__________________________________________________________________________________________________________________
+<template>
+		 <lightning-card title="find record" >
+        <lightning-input label="recordId" name="recordId" onchange={dataHandler}></lightning-input>
+				  <lightning-button label="find record" onclick={addHandler}></lightning-button>
+		{data}
+				  <lightning-button label="next" onclick={handleNext} ></lightning-button>
+		{number}
+				 </lightning-card>
+</template>
+---------------------------------------------------------------------------------------------------------------------------
+JS:
+import { LightningElement ,track} from 'lwc';
+import getAccountList from '@salesforce/apex/AccountRecord.getAccountList';
+import getList from '@salesforce/apex/AccountRecord.getList';
+import deleteRecord from '@salesforce/apex/AccountRecord.deleteRecord';
+export default class Recordid_poc extends LightningElement {
+		  recordId;
+      error;
+     @track result;
+		@track data;
+		@track number="1";
+		 @track j=0;
+		
+dataHandler(event){
+    var input=event.target.name;
+   
+        this.recordid=event.target.value;
+   
+}
+		
+ addHandler() {
+        getAccountList({recordId :this.recordid})
+            .then(result => {
+						if(result.length>0)
+								{
+                this.Accounts = result;
+						 this.data = JSON.stringify(this.Accounts);
+						console.log(data);
+								}
+						else{
+								this.data='Record does not exist';
+						}
+            })
+            .catch(error => {
+                this.error = error;
+            });
+    }
+		
+	handleNext()
+		{
+				console.log("exam schedule nenepirali");
+			var i=0;
+				this.j=sessionStorage.getItem('key');
+				console.log(this.j+"shree");
+				if(!this.j){
+    this.j=0;
+						console.log("no data");
+}
+    
+
+	 getList()
+            .then(result => {
+						if(result.length>0)
+								{
+                console.log(result);
+					
+				while (i<result.length)
+						
+						{
+							
+						if(this.number!=result[i])
+								{
+								
+										i++;
+									
+										
+								}
+								else{
+										break;
+								}
+								
+						}
+								}
+			this.number=result[i+1];
+			 })
+            .catch(error => {
+                this.error = error;
+            });							
+				
+this.j++;
+				
+			sessionStorage.setItem('key', this.j);
+			
+				this.number=this.j;
+		}
+}
