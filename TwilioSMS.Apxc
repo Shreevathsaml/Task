@@ -1,0 +1,29 @@
+public class TwilioSendSMS {    
+    public static void sendSms(){            
+        String phNumber ='+91**********';        
+        String accountSid = '******************************************';        
+        String token = '********************';        
+        String fromPhNumber = '+13**********';           
+        String smsBody = 'This is the body of the sms sent by my class';        
+        HttpRequest req = new HttpRequest();        
+        req.setEndpoint('https://api.twilio.com/2010-04-01/Accounts/'+accountSid+'/SMS/Messages.json');        
+        req.setMethod('POST');        
+        String VERSION  = '3.2.0';        
+        req.setHeader('X-Twilio-Client', 'salesforce-' + VERSION);        
+        req.setHeader('User-Agent', 'twilio-salesforce/' + VERSION);       
+        req.setHeader('Accept', 'application/json');        
+        req.setHeader('Accept-Charset', 'utf-8');        
+        req.setHeader('Authorization','Basic '+EncodingUtil.base64Encode(Blob.valueOf(accountSid+':' +token)));
+              
+        req.setBody('To='+EncodingUtil.urlEncode(phNumber,'UTF-8')+'&From='+EncodingUtil.urlEncode(fromPhNumber,'UTF-8')+'&Body='+smsBody); 
+      // req.setBody('To='+phNumber+'&From='+fromPhNumber+'&Body='+smsBody);        
+        Http http = new Http();        
+        HTTPResponse res = http.send(req);        
+        System.debug(res.getBody());        
+        if(res.getStatusCode()==201) 
+        System.Debug('Message sending Successful');        
+        else{            
+            System.Debug('Message sending Unsuccessful');
+        }        
+    } 
+}
