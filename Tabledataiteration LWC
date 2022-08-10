@@ -1,4 +1,4 @@
-HTML
+HTML  Displaying rows through Iteration
 <template>
 		 <lightning-card title="HelloForEach" icon-name="custom:custom14">
         <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
