@@ -1,0 +1,23 @@
+//Java programme to get all combination of a string using recursion
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+    
+   static List<String> lst = new ArrayList<String>();
+    public static void recursive (String str,String s){
+        if(str.length()==0)
+        {
+            lst.add(s);
+            return ;
+        }
+        recursive(str.substring(1),s+str.charAt(0));
+         recursive(str.substring(1),s);
+        
+    }
+    public static void main(String[] args) {
+        String str="abc";
+        recursive(str,"");
+        System.out.println(lst);
+    }
+}
