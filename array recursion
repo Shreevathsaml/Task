@@ -1,0 +1,23 @@
+//recursive programme to combination of an array
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+     static List<String> lst = new ArrayList<>();
+    public static void recursive(int[] arr,int n,String str)
+    {
+       if(n==arr.length)
+       {
+           lst.add(str);
+           return;
+       }
+       recursive(arr,n+1,arr[n]+str);
+       recursive(arr,n+1,str);
+    }
+    public static void main(String[] args) {
+        int arr[]={1,2,3};
+        recursive(arr,0,"");
+        System.out.println(lst);
+    }
+}
