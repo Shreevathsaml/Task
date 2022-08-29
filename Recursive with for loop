@@ -1,0 +1,30 @@
+//Recursive java code to get all combination of given digits
+//output:[0000, 1000, 0100, 1100, 0010, 1010, 0110, 1110, 0001, 1001, 0101, 1101, 0011, 1011, 0111, 1111]
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+     static List<String> lst = new ArrayList<>();
+    
+    public static void recursive(int[] arr,int n,String str)
+    {
+       
+      if(n==4)
+      {
+          lst.add(str);
+          return;
+      }
+     for(int i=0;i<arr.length;i++)
+     {
+         recursive(arr,n+1,arr[i]+str);
+     }
+
+    }
+    public static void main(String[] args) {
+        int arr[]={0,1};
+       
+        recursive(arr,0,"");
+        System.out.println(lst);
+        }
+       
+}
