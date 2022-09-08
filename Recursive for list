@@ -1,0 +1,44 @@
+
+// Java program for the above approach
+import java.util.*;
+class GFG {
+
+	// Declare a global list
+	static List<List<String>> al = new ArrayList<>();
+
+	// Creating a public static Arraylist such that
+	// we can store values
+	// IF there is any question of returning the
+	// we can directly return too// public static
+	// ArrayList<String> al = new ArrayList<String>();
+	public static void main(String[] args)
+	{
+		String s = "abc";
+		List<String> lst= new ArrayList<>();
+		findsubsequences(s, "",lst); // Calling a function
+		System.out.println(al);
+	}
+
+	private static void findsubsequences(String s,
+										String ans,
+										List<String> lst)
+	{
+		if (s.length() == 0) {
+			al.add(lst);
+			return;
+		}
+     List<String> ls1= new ArrayList<>();
+     
+     List<String> ls2= new ArrayList<>();
+     ls1.addAll(lst);
+     ls2.addAll(lst);
+     ls1.add(ans+s.charAt(0));
+		// We add adding 1st character in string
+		findsubsequences(s.substring(1), ans + s.charAt(0),ls1);
+
+		// Not adding first character of the string
+		// because the concept of subsequence either
+		// character will present or not
+		findsubsequences(s.substring(1), ans,ls2);
+	}
+}
