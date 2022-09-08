@@ -1,0 +1,38 @@
+import java.util.*;
+class HelloWorld {
+    	static List<List<String>> al = new ArrayList<>();
+    public static void recursive(int[][] arr,int m,int n,List<String> lst)
+    {
+        if(m==3||n==3||arr[m][n]==1)
+        {
+               int index = lst.size() - 1;
+  
+        // Delete last element by passing index
+        lst.remove(index);
+            al.add(lst);
+            return;
+        }
+          List<String> ls1= new ArrayList<>();
+     
+     List<String> ls2= new ArrayList<>();
+     ls1.addAll(lst);
+     ls2.addAll(lst);
+     int a=m+1;
+     int b=n+1;
+     ls1.add(a+" "+n);
+     ls2.add(m+" "+b);
+        recursive(arr,m+1,n,ls1);
+        recursive(arr,m,n+1,ls2);
+    }
+    public static void main(String[] args) {
+        int arr[][]={
+            {0,0,1},
+            {0,0,0},
+            {1,0,0}
+        };
+        List<String> lst= new ArrayList<>();lst.add(0+" "+0);
+        recursive(arr,0,0,lst);
+        System.out.println(al);
+        System.out.println("Hello, World!");
+    }
+}
