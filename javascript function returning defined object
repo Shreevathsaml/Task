@@ -1,0 +1,20 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+ var executeresponse;
+var execute=function(a,b,callback)
+{
+    var sum=a+b;
+   executeresponse={"isExecuted":true,"result":sum};
+    callback(executeresponse);
+}
+
+
+
+
+execute(2,3,function(){if(executeresponse.isExecuted)
+{
+    console.log(executeresponse.result);
+}
+}
+    );
