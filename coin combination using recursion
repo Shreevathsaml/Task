@@ -1,0 +1,41 @@
+//coin combination using recursion
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+    public static ArrayList<ArrayList<Integer>>lst=new ArrayList<ArrayList<Integer>>();
+    public static void main(String[] args) {
+        int[] arr={2,3,5};
+        ArrayList<Integer> l=new ArrayList<Integer>();
+       // for(int i=0;i<arr.length;i++)
+       // {
+       //     l.add(arr[i]);
+        recursive(arr,l,8);
+       // }
+        System.out.println(lst);
+    }
+    public static void recursive(int[] arr,ArrayList<Integer> l,int target)
+    {
+        System.out.println(l+"    "+target);
+        if(target==0)
+        {
+            lst.add(l);
+            
+        }
+        for(int i=0;i<arr.length;i++)
+        {
+            if((target-arr[i])>=0){
+            target=target-arr[i];
+            }
+            else
+            {
+                return;
+            }
+            ArrayList<Integer>ls= new ArrayList<Integer>();
+            ls.addAll(l);
+            ls.add(arr[i]);
+            recursive(arr,ls,target);
+            target=target+arr[i];
+        }
+    }
+}c
