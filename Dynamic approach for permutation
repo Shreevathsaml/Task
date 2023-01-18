@@ -1,11 +1,12 @@
-
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
 import java.util.*;
 class HelloWorld {
     public static void main(String[] args) {
-        char arr[]={'0','1'};
-        int n=3;
+        char arr[]={'0','1','2'};
+        int n=1;
         List<String>lst=new ArrayList<String>();
-        while(n>=1)
+        while(n<=3)
         {
             if(lst.size()==0)
             {
@@ -19,18 +20,18 @@ class HelloWorld {
                 {
                     for(int j=0;j<arr.length;j++)
                     {
-                       // if(lst.get(j).charAt(lst.get(j).length()-1)<arr[i])
-                        //{
-                            System.out.println(n+"    "+lst.get(i)+arr[j]);
+                        if(lst.get(i).length()==n-1)
+                        {
+                           
                             lst.add(lst.get(i)+arr[j]);
-                        //}
+                        }
                     }
                 }
                
             
             }
-               // System.out.println(lst+"  "+n);
-             n--;
+        
+             n++;
         }
         System.out.println(lst);
     }
