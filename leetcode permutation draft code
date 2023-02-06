@@ -1,0 +1,46 @@
+class Solution {
+    List<List<Integer>>lst=new ArrayList< >();
+    public List<List<Integer>> permute(int[] nums) {
+     recursive(nums,new ArrayList());
+     return lst;
+    }
+    public void recursive(int[] nums,List<Integer> ls)
+    {
+        
+        if(ls.size()>=3)
+        {
+           System.out.println("before"+ls); 
+           List<Integer> l =new ArrayList<Integer>(ls); 
+          lst.add(l);
+
+           ls.remove(ls.size()-1);
+           System.out.println("after"+lst);
+            return ;
+        }
+        //if(n==nums.length)
+       // {
+             
+           // lst.add(ls);
+           
+           // return;
+       // }
+      //  List<Integer> l=new ArrayList<Integer>();
+      //  l.addAll(ls);
+        for(int i=0;i<nums.length;i++)
+        {
+
+            ls.add(nums[i]);
+            
+       //  System.out.println("i  "+i);
+            recursive(nums,ls);
+           
+        }
+        if(ls.size()==0)
+        {
+            return;
+        }
+          ls.remove(ls.size()-1);
+      // n--;
+     // System.out.println("forloop ended"+ls);
+    }
+}
