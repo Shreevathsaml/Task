@@ -1,0 +1,38 @@
+// Base Class
+ class Parent {
+      child c;
+   public  Parent(child obj)
+   {
+       c=obj;
+       
+   }
+    void start(){
+      c.run();
+       System.out.println("this method executed");
+      // System.out.println(name);
+    }
+}
+
+interface child{
+    void run();
+}
+ 
+
+// Driver class
+class Main  implements child{
+    
+    public static void main(String[] args)
+    {
+     
+      Main ex = new Main();  
+        Parent t1= new Parent(ex);  
+        t1.start();  
+        System.out.println("Hi");  
+ 
+     
+    }
+      public void run() {
+    System.out.println("Threads are very helpful in java");
+   
+  }
+}
