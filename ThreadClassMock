@@ -1,0 +1,30 @@
+// Base Class
+ class Parent {
+    String run(){
+        String Name="";
+        return Name;
+    }
+    void start(){
+      String name= run();
+       System.out.println("this method executed");
+       System.out.println(name);
+    }
+}
+ 
+
+// Driver class
+class Main extends Parent{
+    String Name="Hari";
+    public static void main(String[] args)
+    {
+     
+        Main obj1 = new Main();
+        obj1.start();
+ 
+     
+    }
+      public String run() {
+    System.out.println("Threads are very helpful in java");
+    return Name;
+  }
+}
